@@ -48,11 +48,10 @@ export const getQueryCondition = (): string | null => getApp().getQueryCondition
 export const getCurrentRecord = <T = KintoneRecord>(): { record: T } => getApp().record.get();
 
 /** モバイル対応 ```kintone.app.record.set()``` */
-export const setCurrentRecord = (record: { record: KintoneRecord }): void =>
-  getApp().record.set(record);
+export const setCurrentRecord = (record: { record: any }): void => getApp().record.set(record);
 
 /** モバイル対応 ```kintone.app.record.setFieldShown()``` */
-export const setFieldShown = (code: string, visible: boolean): void =>
+export const setFieldShown = <T = Record<string, unknown>>(code: keyof T, visible: boolean): void =>
   getApp().record.setFieldShown(String(code), visible);
 
 /** 一覧に応じて、ツールバー部分を優先してヘッダー要素を返します */
