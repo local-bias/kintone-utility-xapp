@@ -7,6 +7,13 @@ declare const cybozu: Cybozu;
  * kintone javascript APIから実行環境を取得し、モバイル端末である場合はTrueを返却します
  *
  * 引数としてイベントタイプを設定することで、より安全なチェックを行います
+ *
+ * 判定の以下の優先順にしたがって実行されます
+ *
+ * 1. イベントタイプに指定がある場合はタイプ名から判定
+ * 2. グローバル変数が存在する場合はそれに従う
+ * 3. kintone javascript APIから、アプリIDを取得して判定
+ *
  * @param eventType イベントタイプ
  * @returns 実行環境がモバイル端末である場合はtrue
  */
@@ -38,7 +45,7 @@ export const getQuery = (): string | null => getApp().getQuery();
 export const getQueryCondition = (): string | null => getApp().getQueryCondition();
 
 /** モバイル対応 ```kintone.app.record.get()``` */
-export const getCurrentRecord = (): { record: KintoneRecord } => getApp().record.get();
+export const getCurrentRecord = <T = KintoneRecord>(): { record: T } => getApp().record.get();
 
 /** モバイル対応 ```kintone.app.record.set()``` */
 export const setCurrentRecord = (record: { record: KintoneRecord }): void =>
