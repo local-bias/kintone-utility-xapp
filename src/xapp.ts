@@ -1,7 +1,4 @@
 import { Record as KintoneRecord } from '@kintone/rest-api-client/lib/client/types';
-import { Cybozu } from './cybozu';
-
-declare const cybozu: Cybozu;
 
 /**
  * kintone javascript APIから実行環境を取得し、モバイル端末である場合はTrueを返却します
