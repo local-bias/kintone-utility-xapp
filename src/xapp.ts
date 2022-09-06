@@ -18,7 +18,7 @@ export const isMobile = (eventType?: string): boolean => {
   if (eventType) {
     return /^mobile\./.test(eventType);
   }
-  return cybozu?.data?.IS_MOBILE_DEVICE ?? !kintone.app.getId();
+  return kintone.app.getId() === null;
 };
 
 /**
